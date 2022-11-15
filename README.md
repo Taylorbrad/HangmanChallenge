@@ -16,3 +16,10 @@ TO RUN WEBPAGE:
 
 
 -enjoy!
+
+
+
+# Source Code:
+
+
+The source code is located in 'lib'. Most of the code is in 'HangmanView.dart', but the other 3 .dart files are important side files as well.
