@@ -4,7 +4,7 @@
 I decided to do a web version of hangman in the Flutter framework for this project
 
 
-TO RUN WEBPAGE:
+# TO RUN WEBPAGE:
 
 
 -Clone the repository
