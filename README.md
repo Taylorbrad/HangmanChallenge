@@ -1,7 +1,7 @@
 # Hangman Challenge
 
 
-I decided to a web version of hangman in the Flutter framework for this project
+I decided to do a web version of hangman in the Flutter framework for this project
 
 
 TO RUN WEBPAGE:
