@@ -1,7 +1,10 @@
 # Hangman Challenge
 
 
-I decided to do a web version of hangman in the Flutter framework for this project. It took me about 3 Hours and 30 Minutes.
+I decided to do a web version of hangman in the Flutter framework for this project. 
+
+
+It took me about 3 Hours and 30 Minutes.
 
 
 # TO RUN WEBPAGE:
