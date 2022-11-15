@@ -12,13 +12,16 @@ class HangmanView extends StatefulWidget{
 
 class _HangmanViewState extends State<HangmanView> {
 
-  var wordList = ["1", "2l", "3pp", "4asd", "5jkl;", "tests6", "7crayon", "crayons8", "test8769", "seag"];
+  //Here we initialize our variables required for the game of hangman, starting with the list of 10 random words
+
+  var wordList = ["aluminium", "mayor", "prospect", "wing", "staff", "table", "crisis", "satisfied", "slam", "incongruous"];
 
   bool isPlaying = false;
   bool isComplete = false;
 
   Random random = Random();
 
+  // We initialize everything to 0 or an empty string, then create the default 'word in progress'.
   int randNum = 0;
   int wordLength = 0;
   int incorrectGuesses = 0;
@@ -33,10 +36,14 @@ class _HangmanViewState extends State<HangmanView> {
 
   @override
   Widget build(BuildContext context) {
+
     if (wordToGuess == "")
       {
         initializeVars();
       }
+
+    // This block sets the string to the correct png file required for the current state of the game,
+    // tracked by incorect guesses.
     String pngString = "Frame0.png";
 
     if (incorrectGuesses < 7)
@@ -52,6 +59,9 @@ class _HangmanViewState extends State<HangmanView> {
 
     return Scaffold(
       backgroundColor: Colors.white,
+
+      // This block creates the on-screen elements
+
       body: Row(
         children: [
           SizedBox(height: 1000, width: 200,),
@@ -63,14 +73,11 @@ class _HangmanViewState extends State<HangmanView> {
             Text(wordInProgress, style: TextStyle(fontSize: 30),),
             SizedBox(height: 20,),
             Text(guessText),
+
+            // The following elements are made visible or invisible based on the booleans initialized earlier
+
             Visibility(visible: isPlaying && !isComplete, child: SizedBox(height: 60, width: 60, child: TextFormField(controller: inputChar,))),
-            Visibility(
-              visible: !isComplete,
-              child: InkWell(
-                onTap: isPlaying ? makeGuess : startGame,
-                  child: CustomButton(buttonText)
-              ),
-            ),
+            Visibility(visible: !isComplete, child: InkWell(onTap: isPlaying ? makeGuess : startGame, child: CustomButton(buttonText)),),
             SizedBox(height: 20,),
             Visibility(visible: isComplete, child: InkWell(onTap: playAgain, child: CustomButton("Play Again"),)),
             Visibility(visible: isComplete, child: InkWell(onTap: quitGame, child: CustomButton("Quit"),)),
@@ -101,6 +108,9 @@ class _HangmanViewState extends State<HangmanView> {
 
     var correctIndices = [];
 
+    // Here we iterate through each character in the word chosen from the list at the top.
+    // If the input character matches any of the characters in the word, we store the index
+    // in a list to use later.
     for (int i = 0; i < wordLength; ++i)
       {
         if (guessChar == wordToGuess.substring(i,i+1))
@@ -109,6 +119,7 @@ class _HangmanViewState extends State<HangmanView> {
           }
       }
 
+    // This block determines whether a guess was correct or incorrect based on if the list was empty or not
     if (correctIndices.isEmpty)
       {
         incorrectGuesses += 1;
@@ -118,6 +129,7 @@ class _HangmanViewState extends State<HangmanView> {
         correctGuesses += 1;
       }
 
+    // And finally we iterate through our list of indices, replacing any dashes with the correctly guessed letter
     for(int i in correctIndices)
       {
         int index = (i*2)+1;
@@ -128,7 +140,9 @@ class _HangmanViewState extends State<HangmanView> {
 
 
     bool wordIsDone = true;
-    // In the following block, we will iterate through the word in progress, and if there arent any spaces left, we know we have guessed the word
+
+    // In the following block, we will iterate through the word in progress,
+    // and if there arent any spaces left, we know we have guessed the word
     for(int i = 0; i < wordInProgress.length; ++i)
       {
         if (wordInProgress.substring(i,i+1) == "_")
@@ -141,7 +155,8 @@ class _HangmanViewState extends State<HangmanView> {
       {
         isComplete = true;
       }
-
+    // Set state is the function call to use to reset all on-screen values to the new ones we
+    // generated in the function.
     setState(() {});
   }
 
@@ -155,6 +170,7 @@ class _HangmanViewState extends State<HangmanView> {
 
   playAgain()
   {
+    // This simply pops the current frame off the stack, and adds a new Hangman frame to it, which restarts the game.
     Navigator.of(context, rootNavigator: true)
         .pop(context);
     Navigator.push(
@@ -165,6 +181,7 @@ class _HangmanViewState extends State<HangmanView> {
 
   quitGame()
   {
+    // This block pops the game off the stack, and adds a "thank you" splash screen.
     Navigator.of(context, rootNavigator: true)
         .pop(context);
     Navigator.push(
