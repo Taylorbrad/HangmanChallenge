@@ -1,16 +1,8 @@
-# hangman
+# Hangman Challenge
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+TO RUN WEBPAGE:
+-Clone the repository 
+-navigate in terminal to the 'runtime' folder of this repository
+-run a python http server with 'python -m http.server 8000' (or whatever port instead of 8000')
+-type 'localhost:8000' in chrome and hit return
+-enjoy!
